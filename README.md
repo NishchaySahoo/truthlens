@@ -11,7 +11,7 @@
 
 ## 🌐 Quick Links
 * **Live Public Application:** [https://truthlens.vercel.app](https://truthlens-plv9.vercel.app)
-* **API Documentation (Swagger UI):** https://truthlens-backend.onrender.com/docs
+* **API Documentation (Swagger UI):** [https://truthlens-backend.onrender.com/docs](https://truthlens-51ot.onrender.com/docs)
 * **Codebase Repository:** https://github.com/NishchaySahoo/truthlens
 
 ---
