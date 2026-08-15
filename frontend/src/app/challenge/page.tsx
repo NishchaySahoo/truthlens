@@ -1,10 +1,12 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Trophy, CheckCircle2, XCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { fetchApi } from '@/lib/api';
 
-export default function ChallengePage() {
+export const dynamic = 'force-dynamic';
+
+function ChallengeContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const challengeId = searchParams.get('id') || 'challenge_phishing_1';
@@ -153,5 +155,13 @@ export default function ChallengePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ChallengePage() {
+  return (
+    <Suspense fallback={<div className="max-w-2xl mx-auto py-24 text-center text-slate-400">Loading challenge...</div>}>
+      <ChallengeContent />
+    </Suspense>
   );
 }

@@ -1,8 +1,10 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Sparkles, Link as LinkIcon, Image as ImageIcon, FileText, CheckCircle2, Loader2, ArrowRight } from 'lucide-react';
 import { fetchApi } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
 
 const DEMO_PRESETS = [
   { id: 'scholarship-misinformation', label: 'Rs 50,000 Scholarship Scam', type: 'WhatsApp Chain / Phishing' },
@@ -20,7 +22,7 @@ const ANALYSIS_STEPS = [
   'Building Media-Literacy Report',
 ];
 
-export default function AnalyzePage() {
+function AnalyzeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<'text' | 'url' | 'image' | 'demo'>('demo');
@@ -222,5 +224,13 @@ export default function AnalyzePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function AnalyzePage() {
+  return (
+    <Suspense fallback={<div className="max-w-4xl mx-auto px-4 py-24 text-center text-slate-400">Loading analyzer...</div>}>
+      <AnalyzeContent />
+    </Suspense>
   );
 }
